@@ -13,20 +13,18 @@ public class GridSpec: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        transform.Find("Interactable").gameObject.GetComponent<Renderer>().enabled = false;
         camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(camRay, out hit))
         {
-            print("1");
             if (hit.collider.tag == "HighLight")
             {
                 hit.collider.gameObject.GetComponent<Renderer>().enabled = true;
-                print("hit");
             }
+
             
         }
-        else
-        {
-           transform.Find("Interactable").gameObject.GetComponent<Renderer>().enabled = false;
-        }
+        
+        
     }
 }
