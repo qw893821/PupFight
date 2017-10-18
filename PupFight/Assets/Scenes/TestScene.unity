@@ -630,6 +630,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 60976205}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &843360602
@@ -690,7 +701,7 @@ RectTransform:
   m_GameObject: {fileID: 955331798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 630610459}
   m_RootOrder: 0
@@ -721,10 +732,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -921,7 +932,7 @@ RectTransform:
   m_GameObject: {fileID: 1218720931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 843360600}
   m_RootOrder: 0
@@ -952,10 +963,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1055,35 +1066,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 114770881429559168, guid: ef3d37a961c802f499a3c5d3725d1fbe,
+        type: 2}
+      propertyPath: targetGrid
+      value: 
+      objectReference: {fileID: 60976205}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef3d37a961c802f499a3c5d3725d1fbe, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1479722586 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1611838011578398, guid: ef3d37a961c802f499a3c5d3725d1fbe,
-    type: 2}
-  m_PrefabInternal: {fileID: 1479722585}
 --- !u!114 &1479722587 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114770881429559168, guid: ef3d37a961c802f499a3c5d3725d1fbe,
     type: 2}
   m_PrefabInternal: {fileID: 1479722585}
   m_Script: {fileID: 11500000, guid: 8e8b5239240674d4dbdcb5332c183d0e, type: 3}
---- !u!54 &1479722589
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1479722586}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 122
-  m_CollisionDetection: 0
 --- !u!1001 &1488912228
 Prefab:
   m_ObjectHideFlags: 0
@@ -1324,7 +1320,7 @@ RectTransform:
   m_GameObject: {fileID: 1609979182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 367914751}
   m_RootOrder: 0
@@ -1355,10 +1351,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1554,7 +1550,8 @@ Prefab:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114733867453983934, guid: 189419697811f6f4a92ff7e3bc148729, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 189419697811f6f4a92ff7e3bc148729, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1895859567

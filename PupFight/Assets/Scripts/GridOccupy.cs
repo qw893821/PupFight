@@ -21,7 +21,7 @@ public class GridOccupy : MonoBehaviour {
         if (col.tag == "Player" || col.tag == "Enemy")
         {
             gridSpec.occupied = true;
-            print("Enter");
+            
         }
     }
 
