@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33293145687443800}
   - component: {fileID: 23399871120035632}
   - component: {fileID: 65401396595761444}
+  - component: {fileID: 114880856300472678}
   m_Layer: 0
   m_Name: Interactable
   m_TagString: HighLight
@@ -83,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626428311627406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4681128748528664}
@@ -218,3 +219,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupied: 0
+--- !u!114 &114880856300472678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243403065719608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378ffc36348611748a30ff3b29341aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

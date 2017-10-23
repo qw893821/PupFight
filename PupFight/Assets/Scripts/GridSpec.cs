@@ -29,7 +29,7 @@ public class GridSpec: MonoBehaviour {
         camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(camRay, out hit))
         {
-            if (hit.collider.tag == "HighLight")
+            if (hit.collider.tag == "HighLight"&&!occupied)
             {
                     hit.collider.gameObject.GetComponent<Renderer>().enabled = true;
                 if (Input.GetButtonDown("Fire1"))
