@@ -1,13 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+enum MovingState{
+    isWaiting,
+    isMoving
+}
 public class PlayerAction : MonoBehaviour {
     public GameObject targetGrid;
     GameObject playerActionUI;
 
+    //player move speed;
+    float speed;
+
     //several buttons
-    
+
+
+    //MovingStates
+    MovingState mState;
 
     // Use this for initialization
     void Start()
@@ -15,6 +24,7 @@ public class PlayerAction : MonoBehaviour {
         
         playerActionUI = GameObject.Find("PlayerActionUI");
         playerActionUI.SetActive(false);
+        speed = 5f;
     }
 
     private void Update()
@@ -24,22 +34,46 @@ public class PlayerAction : MonoBehaviour {
     // Update is called once per frame
     void LateUpdate () {
         ActiveUI();
-        print(targetGrid.transform.position);
+        switch (mState) {
+            case MovingState.isMoving:
+                MovePlayer();
+                break;
+            case MovingState.isWaiting:
+                break;
+
+        }
+        
     }
 
     
 
     public void MovePlayer()
     {
-            transform.position = targetGrid.transform.position;
-            transform.position += new Vector3(0, 0, 0);
+        Vector3 target;
+        float offset;
+        
+        offset = transform.position.y - targetGrid.transform.position.y;
+        target = new Vector3(targetGrid.transform.position.x, targetGrid.transform.position.y + offset, targetGrid.transform.position.z);
+
+        transform.position=Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (transform.position == target)
+        {
+            mState = MovingState.isWaiting;  
+        }
+            
     }
+
+    public void ChangeState()
+    {
+        mState = MovingState.isMoving;
+    }
+        
+    
 
     public void ActiveUI()//active player action UI
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            
             playerActionUI.SetActive(true);
             playerActionUI.transform.position = Input.mousePosition;
         }
