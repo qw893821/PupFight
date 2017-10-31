@@ -16,13 +16,13 @@ public class GridSpec: MonoBehaviour {
     public bool occupied;
 
     //gird state effect player possible action
-    public string gState;
+    public string gStatus;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
         playerAction = player.GetComponent<PlayerAction>();
         occupied = false;
-        gState = "isNeutral";
+        gStatus = "isNeutral";
 
 	}
 	

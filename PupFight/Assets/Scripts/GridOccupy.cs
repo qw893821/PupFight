@@ -22,10 +22,10 @@ public class GridOccupy : MonoBehaviour {
         switch (col.tag)
         {
             case "Player":
-                gridSpec.gState = "isFriend";
+                gridSpec.gStatus = "isFriend";
                 break;
             case "Enemy":
-                gridSpec.gState = "isEnemy";
+                gridSpec.gStatus = "isEnemy";
                 break;
             
         }
@@ -41,7 +41,7 @@ public class GridOccupy : MonoBehaviour {
         if (col.tag == "Player" || col.tag == "Enemy")
         {
             gridSpec.occupied = false;
-            gridSpec.gState = "isNeutral";
+            gridSpec.gStatus = "isNeutral";
         }
     }
 
