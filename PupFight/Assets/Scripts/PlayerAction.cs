@@ -29,6 +29,7 @@ public class PlayerAction : MonoBehaviour {
         
         playerActionUI.SetActive(false);
         speed = 5f;
+        
     }
 
     private void Update()
@@ -79,8 +80,8 @@ public class PlayerAction : MonoBehaviour {
         if (Input.GetButtonDown("Fire1"))
         {
             GridSpec gSpec;
-            gSpec = targetGrid.GetComponent<GridSpec>();
-            if (gSpec.gState == "isNetural")
+            gSpec = targetGrid.transform.parent.gameObject.GetComponent<GridSpec>();
+            if (gSpec.gState == "isNeutral")
             {
                 playerActionUI.SetActive(true);
                 playerActionUI.transform.position = Input.mousePosition;

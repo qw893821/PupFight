@@ -18,17 +18,32 @@ public class GridOccupy : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
+        print("enter");
+        switch (col.tag)
+        {
+            case "Player":
+                gridSpec.gState = "isFriend";
+                break;
+            case "Enemy":
+                gridSpec.gState = "isEnemy";
+                break;
+            
+        }
         if (col.tag == "Player" || col.tag == "Enemy")
         {
             gridSpec.occupied = true;
         }
     }
 
+
     private void OnTriggerExit(Collider col)
     {
         if (col.tag == "Player" || col.tag == "Enemy")
         {
             gridSpec.occupied = false;
+            gridSpec.gState = "isNeutral";
         }
     }
+
+    
 }

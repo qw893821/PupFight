@@ -22,6 +22,7 @@ public class GridSpec: MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         playerAction = player.GetComponent<PlayerAction>();
         occupied = false;
+        gState = "isNeutral";
 
 	}
 	
@@ -68,19 +69,6 @@ public class GridSpec: MonoBehaviour {
             transform.Find("Interactable").GetComponent<Renderer>().enabled = false;
         }
     }
-    private void OnTriggerEnter(Collider col)
-    {
-        switch (col.tag)
-        {
-            case "Player":
-                gState = "isFriend";
-                break;
-            case "Enemy":
-                gState = "isEnemy";
-                break;
-            default:
-                gState = "isNetural";
-                break;
-        }
-    }
+    
+
 }
