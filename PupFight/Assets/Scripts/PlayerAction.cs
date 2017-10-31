@@ -18,18 +18,22 @@ public class PlayerAction : MonoBehaviour {
     //MovingStates
     MovingState mState;
 
+    //camera ray, shot ray to get the grid where the mouse is.
+    Ray camRay;
+
     // Use this for initialization
     void Start()
     {
         
         playerActionUI = GameObject.Find("PlayerActionUI");
+        
         playerActionUI.SetActive(false);
         speed = 5f;
     }
 
     private void Update()
     {
-        
+
     }
     // Update is called once per frame
     void LateUpdate () {
@@ -74,8 +78,13 @@ public class PlayerAction : MonoBehaviour {
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            playerActionUI.SetActive(true);
-            playerActionUI.transform.position = Input.mousePosition;
+            GridSpec gSpec;
+            gSpec = targetGrid.GetComponent<GridSpec>();
+            if (gSpec.gState == "isNetural")
+            {
+                playerActionUI.SetActive(true);
+                playerActionUI.transform.position = Input.mousePosition;
+            }
         }
         if (Input.GetButtonDown("Fire2"))
         {
@@ -83,4 +92,6 @@ public class PlayerAction : MonoBehaviour {
 
         }
     }
+
+    
 }

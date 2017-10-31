@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GridState
-{
-    isEnemy,
-    isFriend,
-    isNetural
-}
+
 
 public class GridSpec: MonoBehaviour {
     Ray camRay;
@@ -21,7 +16,7 @@ public class GridSpec: MonoBehaviour {
     public bool occupied;
 
     //gird state effect player possible action
-    GridState gState;
+    public string gState;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -78,13 +73,13 @@ public class GridSpec: MonoBehaviour {
         switch (col.tag)
         {
             case "Player":
-                gState = GridState.isFriend;
+                gState = "isFriend";
                 break;
             case "Enemy":
-                gState = GridState.isEnemy;
+                gState = "isEnemy";
                 break;
             default:
-                gState = GridState.isNetural;
+                gState = "isNetural";
                 break;
         }
     }
