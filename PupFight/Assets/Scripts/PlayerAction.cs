@@ -21,7 +21,8 @@ public class PlayerAction : MonoBehaviour {
     //player attack
     GridOccupy gO;
     GameObject enemyPup;
-    public float attackPow;
+    float attackPow;
+    EnemyHealth enemyHealth;
 
     //several buttons
 
@@ -153,5 +154,12 @@ public class PlayerAction : MonoBehaviour {
         enemyPup = gO.thisUnit;
         //print(enemyPup);
         
+    }
+
+    public void Damage()
+    {
+        enemyHealth = enemyPup.GetComponent<EnemyHealth>();
+        enemyHealth.currentHealth -= attackPow;
+        playerActionUI.SetActive(false);
     }
 }

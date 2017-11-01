@@ -42,11 +42,5 @@ public class EnemyHealth : MonoBehaviour {
 
     }
 
-    public void GetDamage()
-    {
-        Debug.Log("attack");
-        currentHealth -= playerAction.attackPow;
-        playerActionUI.SetActive(false);
-
-    }
+    
 }

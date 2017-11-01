@@ -297,7 +297,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1479722587}
     - target: {fileID: 114286375907689216, guid: 82d546f5a5227a8438ed84ed9cf7b25d,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -306,7 +306,7 @@ Prefab:
     - target: {fileID: 114387595569783324, guid: 82d546f5a5227a8438ed84ed9cf7b25d,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Damage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82d546f5a5227a8438ed84ed9cf7b25d, type: 2}
