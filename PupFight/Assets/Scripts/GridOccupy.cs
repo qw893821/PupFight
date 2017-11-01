@@ -5,6 +5,9 @@ using UnityEngine;
 public class GridOccupy : MonoBehaviour {
     GameObject grid;
     GridSpec gridSpec;
+
+    //this unit is the one whihc occpuy this grid;
+    public GameObject thisUnit;
 	// Use this for initialization
 	void Awake () {
         grid = transform.parent.gameObject;
@@ -18,31 +21,38 @@ public class GridOccupy : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-        print("enter");
-        switch (col.tag)
+        if (gridSpec.occupied != true)
         {
-            case "Player":
-                gridSpec.gStatus = "isFriend";
-                break;
-            case "Enemy":
-                gridSpec.gStatus = "isEnemy";
-                break;
-            
-        }
-        if (col.tag == "Player" || col.tag == "Enemy")
-        {
-            gridSpec.occupied = true;
+            switch (col.tag)
+            {
+                case "Player":
+                    gridSpec.gStatus = "isFriend";
+                    break;
+                case "Enemy":
+                    gridSpec.gStatus = "isEnemy";
+                    break;
+
+            }
+            if (col.tag == "Player" || col.tag == "Enemy")
+            {
+                gridSpec.occupied = true;
+            }
+            thisUnit = col.transform.gameObject;
         }
     }
 
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Player" || col.tag == "Enemy")
+        if (col.transform.gameObject == thisUnit)
         {
-            gridSpec.occupied = false;
-            gridSpec.gStatus = "isNeutral";
+            if (col.tag == "Player" || col.tag == "Enemy")
+            {
+                gridSpec.occupied = false;
+                gridSpec.gStatus = "isNeutral";
+            }
         }
+        
     }
 
     
