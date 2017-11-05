@@ -6,26 +6,16 @@ using UnityEngine.UI;
 enum ActionStatus{
     isWaiting,
     isMoving,
+    moved,
     isActing
 }
 public class PlayerAction : MonoBehaviour {
-    public GameObject targetGrid;
-    GameObject playerActionUI;
-    Button moveButton;
-    Button attactButton;
-    Button statusButton;
-
+    public GameObject targetGrid;        
     //player move speed;
     float speed;
-
-    //player attack
-    GridOccupy gO;
-    GameObject enemyPup;
-    float attackPow;
-    EnemyHealth enemyHealth;
-
-    //several buttons
-
+    
+    //pup attack power
+    public float attackPow;
 
     //MovingStatus
     ActionStatus aStatus;
@@ -38,11 +28,8 @@ public class PlayerAction : MonoBehaviour {
     void Start()
     {
 
-        playerActionUI = GameObject.Find("PlayerActionUI");
-        playerActionUI.SetActive(false);
-        moveButton = playerActionUI.transform.Find("MoveButton").gameObject.GetComponent<Button>();
-        attactButton = playerActionUI.transform.Find("AttackButton").gameObject.GetComponent<Button>();
-        statusButton = playerActionUI.transform.Find("StatusButton").gameObject.GetComponent<Button>();
+        
+        
         speed = 5f;
         attackPow = 5f;
         
@@ -55,7 +42,7 @@ public class PlayerAction : MonoBehaviour {
     }
     // Update is called once per frame
     void LateUpdate() {
-        ActiveUI();
+       
         MovingCheck();
 
 
@@ -74,7 +61,7 @@ public class PlayerAction : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         if (transform.position == target)
         {
-            aStatus = ActionStatus.isWaiting;
+            aStatus = ActionStatus.moved;
         }
 
     }
@@ -86,47 +73,7 @@ public class PlayerAction : MonoBehaviour {
 
 
 
-    public void ActiveUI()//active player action UI
-    {
-        
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (!playerActionUI.activeSelf)
-            {
-                GridSpec gSpec;
-                gSpec = targetGrid.transform.parent.gameObject.GetComponent<GridSpec>();
-                if (gSpec.gStatus == "isNeutral")//player could move to neutral grid and check player status
-                {
-                    playerActionUI.SetActive(true);
-                    moveButton.interactable = true;
-                    attactButton.interactable = false;
-                    playerActionUI.transform.position = Input.mousePosition;
-                }
-                else if (gSpec.gStatus == "isEnemy")//player could attack grid have enemy and check player or enemy status
-                {
-                    playerActionUI.SetActive(true);
-                    moveButton.interactable = false;
-                    attactButton.interactable = true;
-                    playerActionUI.transform.position = Input.mousePosition;
-                    GetTargetPup();
-
-
-                }
-                else if (gSpec.gStatus == "isFriend")//player can only check player status when the grid is occupied by friend unit
-                {
-                    playerActionUI.SetActive(true);
-                    moveButton.interactable = false;
-                    attactButton.interactable = false;
-                    playerActionUI.transform.position = Input.mousePosition;
-                }
-            }
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            playerActionUI.SetActive(false);
-
-        }
-    }
+    
 
     void MovingCheck()
     {
@@ -134,8 +81,6 @@ public class PlayerAction : MonoBehaviour {
         {
             case ActionStatus.isMoving:
                 MovePlayer();
-                break;
-            case ActionStatus.isWaiting:
                 break;
 
         }
@@ -148,18 +93,7 @@ public class PlayerAction : MonoBehaviour {
 
 
 
-    void GetTargetPup()
-    {
-        gO = targetGrid.GetComponent<GridOccupy>();
-        enemyPup = gO.thisUnit;
-        //print(enemyPup);
-        
-    }
+    
 
-    public void Damage()
-    {
-        enemyHealth = enemyPup.GetComponent<EnemyHealth>();
-        enemyHealth.currentHealth -= attackPow;
-        playerActionUI.SetActive(false);
-    }
+    
 }

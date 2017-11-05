@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 65493429777001128}
   - component: {fileID: 114562667210930942}
   m_Layer: 0
-  m_Name: PlayerPup
+  m_Name: PlayerPup1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGrid: {fileID: 0}
+  playerActionUI: {fileID: 0}
 --- !u!136 &136124409752640860
 CapsuleCollider:
   m_ObjectHideFlags: 1
