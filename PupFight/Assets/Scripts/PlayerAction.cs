@@ -44,6 +44,7 @@ public class PlayerAction : MonoBehaviour {
     void LateUpdate() {
        
         MovingCheck();
+        
 
 
     }

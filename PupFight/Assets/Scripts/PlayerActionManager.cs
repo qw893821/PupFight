@@ -29,6 +29,7 @@ public class PlayerActionManager : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
         ActiveUI();
+        
     }
 
     public void ActiveUI()//active player action UI
@@ -88,8 +89,6 @@ public class PlayerActionManager : MonoBehaviour {
     {
         go = playerAction.targetGrid.GetComponent<GridOccupy>();
         //enemyPup = gO.thisUnit;
-        print(playerAction);
-
         if (go.thisUnit.tag == "Player")
         {
             playerPup = go.thisUnit;
@@ -100,4 +99,6 @@ public class PlayerActionManager : MonoBehaviour {
         }
 
     }
+
+
 }
