@@ -9,8 +9,8 @@ public class GridSpec: MonoBehaviour {
     RaycastHit hit;
 
     //get player;
-    PlayerAction playerAction;
-    GameObject player;
+    public GameObject playerGM;
+    PlayerActionManager playerActionManager;
 
     //if the grid had an obejct setted, this grid will not highlighted
     public bool occupied;
@@ -19,11 +19,9 @@ public class GridSpec: MonoBehaviour {
     public string gStatus;
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerAction = player.GetComponent<PlayerAction>();
         occupied = false;
         gStatus = "isNeutral";
-
+        playerActionManager = playerGM.GetComponent<PlayerActionManager>();
 	}
 	
 	// Update is called once per frame
@@ -54,7 +52,7 @@ public class GridSpec: MonoBehaviour {
                     hit.collider.gameObject.GetComponent<Renderer>().enabled = true;
                     if (Input.GetButtonDown("Fire1"))
                     {
-                        playerAction.targetGrid = hit.collider.gameObject;
+                        playerActionManager.targetGrid = hit.collider.gameObject.transform.parent.gameObject;
                     }
                 
             }

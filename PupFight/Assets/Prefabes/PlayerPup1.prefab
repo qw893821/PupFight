@@ -635,8 +635,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8b5239240674d4dbdcb5332c183d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetGrid: {fileID: 0}
-  playerActionUI: {fileID: 0}
+  playerActionManager: {fileID: 0}
+  attackPow: 0
 --- !u!136 &136124409752640860
 CapsuleCollider:
   m_ObjectHideFlags: 1

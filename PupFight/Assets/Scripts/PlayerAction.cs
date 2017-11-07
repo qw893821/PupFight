@@ -10,7 +10,9 @@ enum ActionStatus{
     isActing
 }
 public class PlayerAction : MonoBehaviour {
-    public GameObject targetGrid;        
+    GameObject targetGrid;
+    public GameObject playerActionManager;
+
     //player move speed;
     float speed;
     
@@ -28,7 +30,7 @@ public class PlayerAction : MonoBehaviour {
     void Start()
     {
 
-        
+        targetGrid = playerActionManager.GetComponent<PlayerActionManager>().targetGrid;
         
         speed = 5f;
         attackPow = 5f;
@@ -55,8 +57,7 @@ public class PlayerAction : MonoBehaviour {
     {
         Vector3 target;
         float offset;
-
-        offset = transform.position.y - targetGrid.transform.position.y;
+        offset = transform.position.y -targetGrid.transform.position.y;
         target = new Vector3(targetGrid.transform.position.x, targetGrid.transform.position.y + offset, targetGrid.transform.position.z);
 
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);

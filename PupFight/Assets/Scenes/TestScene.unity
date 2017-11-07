@@ -155,23 +155,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1811484078292952, guid: 82d546f5a5227a8438ed84ed9cf7b25d,
     type: 2}
   m_PrefabInternal: {fileID: 533672120}
---- !u!1 &261773452 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1915847288040696, guid: 7c0769d9dbc92b94385d4f751a973ef2,
+--- !u!114 &261773453 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114453111347364750, guid: 7c0769d9dbc92b94385d4f751a973ef2,
     type: 2}
   m_PrefabInternal: {fileID: 1031028945}
---- !u!114 &261773453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 261773452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9a74dbc43f66e64cb2f29c636add589, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerActionUI: {fileID: 229581034}
 --- !u!1001 &401860878
 Prefab:
   m_ObjectHideFlags: 0
@@ -333,6 +322,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82d546f5a5227a8438ed84ed9cf7b25d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &630537364 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1915847288040696, guid: 7c0769d9dbc92b94385d4f751a973ef2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1031028945}
 --- !u!1001 &1031028945
 Prefab:
   m_ObjectHideFlags: 0
@@ -372,6 +366,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 114453111347364750, guid: 7c0769d9dbc92b94385d4f751a973ef2,
+        type: 2}
+      propertyPath: playerActionUI
+      value: 
+      objectReference: {fileID: 229581034}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c0769d9dbc92b94385d4f751a973ef2, type: 2}
   m_IsPrefabParent: 0
@@ -675,9 +674,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114770881429559168, guid: ef3d37a961c802f499a3c5d3725d1fbe,
         type: 2}
-      propertyPath: playerActionUI
+      propertyPath: playerActionManager
       value: 
-      objectReference: {fileID: 229581034}
+      objectReference: {fileID: 630537364}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef3d37a961c802f499a3c5d3725d1fbe, type: 2}
   m_IsPrefabParent: 0
@@ -1038,6 +1037,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114188731556660194, guid: c9dd3b2241c65d448b288c246d995599,
+        type: 2}
+      propertyPath: playerActionManager
+      value: 
+      objectReference: {fileID: 261773453}
     - target: {fileID: 1626428311627406, guid: c9dd3b2241c65d448b288c246d995599, type: 2}
       propertyPath: m_Name
       value: BasicGrid (6)
@@ -1177,11 +1181,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 114149768517370834, guid: 74e4cdb6e95b6dd43b0198236b775a71,
-        type: 2}
-      propertyPath: playerActionUI
-      value: 
-      objectReference: {fileID: 229581034}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e4cdb6e95b6dd43b0198236b775a71, type: 2}
   m_IsPrefabParent: 0
