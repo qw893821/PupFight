@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223584232695982802}
   - component: {fileID: 114363471064364464}
   - component: {fileID: 114895556256496368}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: HealthCanv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 54750749085734712}
   - component: {fileID: 65438160986633622}
   - component: {fileID: 114858641330875450}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: PlayerPup2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 224781431158286188}
   - component: {fileID: 222460439196172712}
   - component: {fileID: 114215279711137372}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: HealthBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 33737269720091754}
   - component: {fileID: 136860305962353702}
   - component: {fileID: 23629782752400204}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: FLLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 33315864894988788}
   - component: {fileID: 136952319889848746}
   - component: {fileID: 23256081880984332}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: BLLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4966194900062172}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 224670692598080944}
   - component: {fileID: 222203453282752934}
   - component: {fileID: 114514908476879398}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: HealthFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 33148539000969780}
   - component: {fileID: 136072989272799046}
   - component: {fileID: 23134036761381958}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: FRLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 33144238215569162}
   - component: {fileID: 65394873118242196}
   - component: {fileID: 23636487829808634}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 33015071425370964}
   - component: {fileID: 136966018599322842}
   - component: {fileID: 23564785595059076}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: BRLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.4, z: 0.86}
+  m_Size: {x: 0.32, y: 0.4, z: 0.6}
   m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!114 &114149768517370834
 MonoBehaviour:

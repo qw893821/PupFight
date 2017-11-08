@@ -7,7 +7,8 @@ enum ActionStatus{
     isWaiting,
     isMoving,
     moved,
-    isActing
+    isActing,
+    isDone
 }
 public class PlayerAction : MonoBehaviour {
     public GameObject playerActionManager;
@@ -47,7 +48,6 @@ public class PlayerAction : MonoBehaviour {
         MovingCheck();
         
 
-
     }
 
 
@@ -73,7 +73,10 @@ public class PlayerAction : MonoBehaviour {
     }
 
 
-
+    public void Attacked()
+    {
+        aStatus = ActionStatus.isDone;
+    }
     
 
     public void MovingCheck()
@@ -83,13 +86,16 @@ public class PlayerAction : MonoBehaviour {
             case ActionStatus.isMoving:
                 MovePlayer();
                 break;
-
         }
     }
 
-    void AttackCheck()
+    public bool FinishAction()
     {
-
+        if (aStatus == ActionStatus.isDone)
+        {
+            return true;
+        }
+        else return false;
     }
 
 

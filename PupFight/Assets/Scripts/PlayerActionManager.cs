@@ -89,6 +89,7 @@ public class PlayerActionManager : MonoBehaviour {
                         moveButton.interactable = false;
                         attactButton.interactable = true;
                         playerActionUI.transform.position = Input.mousePosition;
+                        enemyPup = targetGrid.transform.Find("Interactable").GetComponent<GridOccupy>().thisUnit;
                     }
                     else if (gSpec.gStatus == "isFriend")//player can only check player status when the grid is occupied by friend unit
                     {
@@ -104,30 +105,38 @@ public class PlayerActionManager : MonoBehaviour {
         
     }
 
-    public void Damage()
+    public void AttackEnemy()
     {
-        
-        playerAction = playerPup.GetComponent<PlayerAction>();
+        float playerAttackPow;
+        playerAttackPow = selectedGO.GetComponent<PlayerAction>().attackPow;
+
         enemyHealth = enemyPup.GetComponent<EnemyHealth>();
 
-        enemyHealth.currentHealth -= playerAction.attackPow;
+        enemyHealth.GetDamage(playerAttackPow);
+        selectedGO.GetComponent<PlayerAction>().Attacked();
         playerActionUI.SetActive(false);
         selectedGO = null;
+
     }
 
     void PupPick()
     {
         if (selectedGO == null && Input.GetButton("Fire1"))
-        { 
-            GridSpec gSpec;
-            gSpec = targetGrid.GetComponent<GridSpec>();
-            if ( gSpec.gStatus == "isFriend")
-            {
-                selectedGO = targetGrid.transform.Find("Interactable").GetComponent<GridOccupy>().thisUnit;
-            }
-
+        {
+            
+            
+                GridSpec gSpec;
+                gSpec = targetGrid.GetComponent<GridSpec>();
+                if (gSpec.gStatus == "isFriend")
+                {
+                    selectedGO = targetGrid.transform.Find("Interactable").GetComponent<GridOccupy>().thisUnit;
+                    if (selectedGO.GetComponent<PlayerAction>().FinishAction())
+                    {
+                        selectedGO = null;
+                    }
+                }
+            
         }
-        
     }
 
 
@@ -155,7 +164,7 @@ public class PlayerActionManager : MonoBehaviour {
     {
         if (Input.GetButton("Fire1"))
         {
-            print(targetGrid);
+            print(selectedGO);
         }
     }
 
@@ -178,4 +187,6 @@ public class PlayerActionManager : MonoBehaviour {
             statusText.text = "Charater Name: " + selectedGO;
         }
     }
+
+
 }

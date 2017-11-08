@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour {
     RectTransform imgRT;
 
     //player action UI.
-    GameObject playerActionUI;
+    //GameObject playerActionUI;
 
     //player attackbility
     public GameObject player;//need change when in late stage when there are mulity characters;
@@ -23,8 +23,8 @@ public class EnemyHealth : MonoBehaviour {
         maxHealth = 200f;
         currentHealth = maxHealth;
         imgRT = healthImg.GetComponent<RectTransform>();
-        playerAction = player.GetComponent<PlayerAction>();
-        playerActionUI = GameObject.Find("PlayerActionUI");
+        //playerAction = player.GetComponent<PlayerAction>();
+        //playerActionUI = GameObject.Find("PlayerActionUI");
 
 
     }
@@ -40,6 +40,11 @@ public class EnemyHealth : MonoBehaviour {
         healthRate = currentHealth / maxHealth;
         imgRT.localScale = new Vector3(healthRate, 1, 1);
 
+    }
+
+    public void GetDamage(float attackPow)
+    {
+        currentHealth -= attackPow;
     }
 
     
