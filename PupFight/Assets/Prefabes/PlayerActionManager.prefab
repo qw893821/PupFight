@@ -25,7 +25,7 @@ GameObject:
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4786263420251204
 Transform:
@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a74dbc43f66e64cb2f29c636add589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerActionUI: {fileID: 1811484078292952, guid: 82d546f5a5227a8438ed84ed9cf7b25d,
+  playerActionUI: {fileID: 0}
+  statusText: {fileID: 114104308131056220, guid: adc7efd1f6fa6a94cbc6f014474bfe09,
     type: 2}
-  targetGrid: {fileID: 0}
-  selectedGO: {fileID: 0}
