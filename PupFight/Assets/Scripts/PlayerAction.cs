@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum ActionStatus{
+public enum ActionStatus{
     isWaiting,
     isMoving,
     moved,
@@ -20,7 +20,7 @@ public class PlayerAction : MonoBehaviour {
     public float attackPow;
 
     //MovingStatus
-    ActionStatus aStatus;
+    public ActionStatus aStatus;
 
     //camera ray, shot ray to get the grid where the mouse is.
     Ray camRay;
