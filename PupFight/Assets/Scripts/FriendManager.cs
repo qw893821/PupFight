@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FriendManager:MonoBehaviour{
-    static FriendManager friendmanager;
+    private static FriendManager _friendmanager;
+    public static FriendManager friendManager
+    {
+        get { return _friendmanager; }
+    }
 
     public GameObject[] friends;
     public PlayerAction[] playerActions;
@@ -16,7 +20,9 @@ public class FriendManager:MonoBehaviour{
 
     private void Awake()
     {
-        
+        if (_friendmanager != null)
+        { Destroy(this); }
+        _friendmanager = this;
         GetPlayerTeam();
 
         playerActions = new PlayerAction[friends.Length];
@@ -34,7 +40,6 @@ public class FriendManager:MonoBehaviour{
 
     void GetPlayerAction()
     {
-        print(friends.Length);
         for (int i = 0; i < friends.Length; i++)
         {
             playerActions[i] = friends[i].GetComponent<PlayerAction>();
@@ -54,5 +59,13 @@ public class FriendManager:MonoBehaviour{
         }
 
         return true;
+    }
+
+    public void RestartTurn()
+    {
+        for(int i = 0; i < friends.Length; i ++)
+        {
+            playerActions[i].aStatus = ActionStatus.isWaiting;
+        }
     }
 }

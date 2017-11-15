@@ -47,7 +47,8 @@ public class GridSpec: MonoBehaviour {
                     hit.collider.gameObject.GetComponent<Renderer>().enabled = true;
                 if (Input.GetButton("Fire1"))
                 {
-                    PlayerActionManager.targetGrid=hit.collider.gameObject.transform.parent.gameObject;
+                    print(PlayerActionManager.instance.targetGrid);
+                    PlayerActionManager.instance.PickTargetGrid(hit.collider.gameObject.transform.parent.gameObject);
                 }
             }
         } 

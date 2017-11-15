@@ -11,7 +11,6 @@ public enum ActionStatus{
     isDone
 }
 public class PlayerAction : MonoBehaviour {
-    public GameObject playerActionManager;
 
     //player move speed;
     float speed;
@@ -21,6 +20,7 @@ public class PlayerAction : MonoBehaviour {
 
     //MovingStatus
     public ActionStatus aStatus;
+
 
     //camera ray, shot ray to get the grid where the mouse is.
     Ray camRay;
@@ -56,8 +56,8 @@ public class PlayerAction : MonoBehaviour {
     {
         Vector3 target;
         float offset;
-        offset = transform.position.y -PlayerActionManager.targetGrid.transform.position.y;
-        target = new Vector3(PlayerActionManager.targetGrid.transform.position.x, PlayerActionManager.targetGrid.transform.position.y + offset, PlayerActionManager.targetGrid.transform.position.z);
+        offset = transform.position.y - PlayerActionManager.instance.targetGrid.transform.position.y;
+        target = new Vector3(PlayerActionManager.instance.targetGrid.transform.position.x, PlayerActionManager.instance.targetGrid.transform.position.y + offset, PlayerActionManager.instance.targetGrid.transform.position.z);
 
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         if (transform.position == target)

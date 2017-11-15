@@ -4,16 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerActionManager : MonoBehaviour {
+
+    private static PlayerActionManager _instance;
+    public static PlayerActionManager instance
+    {
+        get { return _instance; }
+    }
+
     public GameObject playerActionUI;
 
-    public static GameObject targetGrid;
+    public GameObject targetGrid;//change from static to normal
 
-    public static GameObject selectedGO;
+    public GameObject selectedGO;
     PlayerAction playerAction;
     //several buttons
     Button moveButton;
     Button attactButton;
     Button statusButton;
+
+    Button endTurn;
 
     //player status ui
     public Text statusText;
@@ -30,6 +39,12 @@ public class PlayerActionManager : MonoBehaviour {
 
     bool playerPicked;//check if have one player have been selected
 
+
+    private void Awake()
+    {
+        if (_instance != null) { Destroy(this); }
+        _instance = this;
+    }
     // Use this for initialization
     void Start () {
         moveButton = playerActionUI.transform.Find("MoveButton").gameObject.GetComponent<Button>();
@@ -188,5 +203,15 @@ public class PlayerActionManager : MonoBehaviour {
         }
     }
 
+    public void PickTargetGrid(GameObject go)
+    {
+        targetGrid = go;
+    }
 
+    public void EnemyAction()
+    {
+        //need let enemy do something here;
+        //reset player character action status;
+        FriendManager.friendManager.RestartTurn();
+    }
 }
