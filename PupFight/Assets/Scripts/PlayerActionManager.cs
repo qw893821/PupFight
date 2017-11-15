@@ -10,6 +10,7 @@ public class PlayerActionManager : MonoBehaviour {
     {
         get { return _instance; }
     }
+    
 
     public GameObject playerActionUI;
 
@@ -45,6 +46,7 @@ public class PlayerActionManager : MonoBehaviour {
         if (_instance != null) { Destroy(this); }
         _instance = this;
     }
+
     // Use this for initialization
     void Start () {
         moveButton = playerActionUI.transform.Find("MoveButton").gameObject.GetComponent<Button>();
@@ -64,22 +66,20 @@ public class PlayerActionManager : MonoBehaviour {
 
     // Update is called once per frame
     void LateUpdate () {
-        
-        
         PupPick();
         ActiveUI();
         RightMouseClick();
+        CheckPrint();
     }
 
     public void ActiveUI()//active player action UI
     {
         if (selectedGO == null)
         {
-            timer = 0;
+            timer = 0;//this timer avoid the UI being active when click
         }
         if (selectedGO != null)
         {
-            
             timer += Time.deltaTime;
             if (Input.GetButtonDown("Fire1")&&timer>=popTime)
             {
@@ -88,37 +88,51 @@ public class PlayerActionManager : MonoBehaviour {
                 {
                     GridSpec gSpec;
                     gSpec = targetGrid.GetComponent<GridSpec>();
-                    print(gSpec.gStatus);
-                    if (gSpec.gStatus == "isNeutral")//player could move to neutral grid and check player status
+                    if (gSpec.HighLighted()||gSpec.gStatus == "isEnemy")//if the grid is in moveable area
                     {
-                        print("THIS GRID IS NEUTRAL");
-                        playerActionUI.SetActive(true);
-                        moveButton.interactable = true;
-                        attactButton.interactable = false;
-                        playerActionUI.transform.position = Input.mousePosition;
+                        if (gSpec.gStatus == "isNeutral")//player could move to neutral grid and check player status
+                        {
+                            playerActionUI.SetActive(true);
+                            moveButton.interactable = true;
+                            attactButton.interactable = false;
+                            playerActionUI.transform.position = Input.mousePosition;
+                            Moved();
+                        }
+                        else if (gSpec.gStatus == "isEnemy")//player could attack grid have enemy and check player or enemy status
+                        {
+                            print("This is Enemy");
+                            playerActionUI.SetActive(true);
+                            moveButton.interactable = false;
+                            attactButton.interactable = true;
+                            playerActionUI.transform.position = Input.mousePosition;
+                            enemyPup = targetGrid.transform.Find("Interactable").GetComponent<GridOccupy>().thisUnit;
+                        }
+                        else if (gSpec.gStatus == "isFriend")//player can only check player status when the grid is occupied by friend unit
+                        {
+                            playerActionUI.SetActive(true);
+                            moveButton.interactable = false;
+                            attactButton.interactable = false;
+                            playerActionUI.transform.position = Input.mousePosition;
+                        }                        
                     }
-                    else if (gSpec.gStatus == "isEnemy")//player could attack grid have enemy and check player or enemy status
+                    else if (!gSpec.HighLighted()&& gSpec.gStatus != "isEnemy")
                     {
-                        print("THIS GRID IS BAD");
-                        playerActionUI.SetActive(true);
-                        moveButton.interactable = false;
-                        attactButton.interactable = true;
-                        playerActionUI.transform.position = Input.mousePosition;
-                        enemyPup = targetGrid.transform.Find("Interactable").GetComponent<GridOccupy>().thisUnit;
-                    }
-                    else if (gSpec.gStatus == "isFriend")//player can only check player status when the grid is occupied by friend unit
-                    {
-                        print("THIS GRID IS GOOD");
-                        playerActionUI.SetActive(true);
-                        moveButton.interactable = false;
-                        attactButton.interactable = false;
-                        playerActionUI.transform.position = Input.mousePosition;
+                        playerActionUI.SetActive(false);
                     }
                 }
             }
         }
         
     }
+
+    void Moved()//when selected character have done moving, this character could not move until next turn
+    {
+        if (selectedGO.GetComponent<PlayerAction>().aStatus == ActionStatus.moved)
+        {
+            moveButton.interactable = false;
+        }
+    }
+
 
     public void AttackEnemy()
     {
@@ -136,10 +150,8 @@ public class PlayerActionManager : MonoBehaviour {
 
     void PupPick()
     {
-        if (selectedGO == null && Input.GetButton("Fire1"))
-        {
-            
-            
+        if (selectedGO == null && Input.GetButton("Fire1")&&targetGrid!=null)
+        {          
                 GridSpec gSpec;
                 gSpec = targetGrid.GetComponent<GridSpec>();
                 if (gSpec.gStatus == "isFriend")
@@ -149,8 +161,7 @@ public class PlayerActionManager : MonoBehaviour {
                     {
                         selectedGO = null;
                     }
-                }
-            
+                } 
         }
     }
 
@@ -162,6 +173,7 @@ public class PlayerActionManager : MonoBehaviour {
             if (Input.GetButton("Fire2"))
             {
                 selectedGO = null;
+                targetGrid = null;
             }
         }
         if (playerActionUI.activeSelf)
@@ -169,7 +181,6 @@ public class PlayerActionManager : MonoBehaviour {
             if (Input.GetButton("Fire2"))
             {
                 playerActionUI.SetActive(false);
-
             }
         }
     }
@@ -179,7 +190,7 @@ public class PlayerActionManager : MonoBehaviour {
     {
         if (Input.GetButton("Fire1"))
         {
-            print(selectedGO);
+            
         }
     }
 
@@ -188,7 +199,6 @@ public class PlayerActionManager : MonoBehaviour {
         PlayerAction playerAction;
         playerAction = selectedGO.GetComponent<PlayerAction>();
         playerAction.ChangeStatus();
-        print(playerAction);
     }
     
     void ShowStatus()
@@ -199,7 +209,7 @@ public class PlayerActionManager : MonoBehaviour {
         }
         else if (selectedGO!=null)
         {
-            statusText.text = "Charater Name: " + selectedGO;
+            statusText.text = "Charater Name: " + selectedGO.name;
         }
     }
 

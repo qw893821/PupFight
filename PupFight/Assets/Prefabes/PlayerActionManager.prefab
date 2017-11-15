@@ -52,5 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerActionUI: {fileID: 0}
-  statusText: {fileID: 114104308131056220, guid: adc7efd1f6fa6a94cbc6f014474bfe09,
-    type: 2}
+  targetGrid: {fileID: 0}
+  selectedGO: {fileID: 0}
+  statusText: {fileID: 0}

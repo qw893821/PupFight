@@ -30,8 +30,8 @@ public class PlayerAction : MonoBehaviour {
     void Start()
     {
 
-        
-        
+
+        this.gameObject.name = this.gameObject.name.ToString();
         speed = 5f;
         attackPow = 5f;
         
