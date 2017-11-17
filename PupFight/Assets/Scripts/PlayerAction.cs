@@ -21,6 +21,9 @@ public class PlayerAction : MonoBehaviour {
     //MovingStatus
     public ActionStatus aStatus;
 
+    //range GO
+    public GameObject[] rangeGOs;
+
 
     //camera ray, shot ray to get the grid where the mouse is.
     Ray camRay;
@@ -34,8 +37,8 @@ public class PlayerAction : MonoBehaviour {
         this.gameObject.name = this.gameObject.name.ToString();
         speed = 5f;
         attackPow = 5f;
-        
 
+        
     }
 
     private void Update()
@@ -98,7 +101,10 @@ public class PlayerAction : MonoBehaviour {
         else return false;
     }
 
+    public void EnableRange()
+    {
 
+    }
 
     
 
