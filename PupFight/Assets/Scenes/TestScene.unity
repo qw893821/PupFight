@@ -884,6 +884,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPup (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1410848182497010, guid: 189419697811f6f4a92ff7e3bc148729, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 189419697811f6f4a92ff7e3bc148729, type: 2}
   m_IsPrefabParent: 0
@@ -1438,6 +1442,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1410848182497010, guid: 189419697811f6f4a92ff7e3bc148729, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 189419697811f6f4a92ff7e3bc148729, type: 2}
   m_IsPrefabParent: 0
@@ -1525,6 +1533,10 @@ Prefab:
     - target: {fileID: 4831642278772056, guid: 74e4cdb6e95b6dd43b0198236b775a71, type: 2}
       propertyPath: m_RootOrder
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1091569500463376, guid: 74e4cdb6e95b6dd43b0198236b775a71, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74e4cdb6e95b6dd43b0198236b775a71, type: 2}

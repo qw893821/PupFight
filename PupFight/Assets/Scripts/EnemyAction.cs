@@ -62,5 +62,8 @@ public class EnemyAction : MonoBehaviour {
             else return false;      
     }
 
-    
+    public void Movement()
+    {
+        
+    }
 }

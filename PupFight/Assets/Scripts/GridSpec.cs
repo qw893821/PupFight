@@ -58,6 +58,12 @@ public class GridSpec: MonoBehaviour {
         {
             transform.Find("Interactable").GetComponent<Renderer>().enabled = false;
         }
+        //disable the move area highlight, when character have moved
+        if (PlayerActionManager.instance.selectedGO != null&&PlayerActionManager.instance.selectedGO.GetComponent<PlayerAction>().aStatus == ActionStatus.moved
+            )
+        {
+            transform.Find("Interactable").GetComponent<Renderer>().enabled = false;
+        }
     }
 
 
