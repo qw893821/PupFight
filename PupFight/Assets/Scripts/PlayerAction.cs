@@ -10,6 +10,13 @@ public enum ActionStatus{
     isActing,
     isDone
 }
+
+public enum Range
+{
+    melee,
+    shoot
+}
+
 public class PlayerAction : MonoBehaviour {
 
     //player move speed;
@@ -24,12 +31,20 @@ public class PlayerAction : MonoBehaviour {
     //range GO
     public GameObject[] rangeGOs;
 
+    //array of attack range
+    public GameObject[] rangeHLs;
+    public GameObject rangeHL;
+
+    public Range range;
 
     //camera ray, shot ray to get the grid where the mouse is.
     Ray camRay;
     RaycastHit hit;
 
+    //child component, must get before it is set inactive.
+    Visibility rangeVB;
     // Use this for initialization
+    
     void Start()
     {
 
@@ -37,8 +52,10 @@ public class PlayerAction : MonoBehaviour {
         this.gameObject.name = this.gameObject.name.ToString();
         speed = 5f;
         attackPow = 5f;
-
-        
+        InstantiateRange();//this function instantate rangeHL GO
+        Instantiate(rangeHL, transform);
+        FindRange();
+        InActiveRange();
     }
 
     private void Update()
@@ -79,6 +96,7 @@ public class PlayerAction : MonoBehaviour {
     public void Attacked()
     {
         aStatus = ActionStatus.isDone;
+        InActiveRange();
     }
     
 
@@ -101,12 +119,35 @@ public class PlayerAction : MonoBehaviour {
         else return false;
     }
 
-    public void EnableRange()
-    {
 
+    void InstantiateRange()
+    {
+        switch (range)
+        {
+            case Range.melee:
+                rangeHL=rangeHLs[0];
+                break;
+            case Range.shoot:
+                rangeHL=rangeHLs[1];
+                break;
+        }
+        
     }
 
-    
+    public void FindRange()
+    {
+        rangeVB = transform.GetComponentInChildren<Visibility>();
+    }
+
+    public void ActiveRange()
+    {
+        rangeVB.Visible();
+    }
+
+    public void InActiveRange()
+    {
+        rangeVB.Invisible();
+    }
 
     
 }

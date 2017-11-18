@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 54750749085734712}
   - component: {fileID: 65438160986633622}
   - component: {fileID: 114858641330875450}
-  - component: {fileID: 114957695764135704}
   m_Layer: 2
   m_Name: PlayerPup2
   m_TagString: Player
@@ -534,6 +533,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPow: 0
   aStatus: 0
+  rangeGOs: []
+  rangeHLs:
+  - {fileID: 1166111785835444, guid: 286edb39aac1d5d4989e8dd3a4d8400a, type: 2}
+  - {fileID: 1740522464418524, guid: aa631ba5d8a8250498c363767f3d0678, type: 2}
+  rangeHL: {fileID: 0}
+  range: 1
 --- !u!114 &114215279711137372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -638,18 +643,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114957695764135704
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1091569500463376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56df6ede84b07f34881992788e9d586d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rangeHL: {fileID: 1190203601291648, guid: 077a5fe68a2e69d478eed28a0e42ac1e, type: 2}
 --- !u!136 &136072989272799046
 CapsuleCollider:
   m_ObjectHideFlags: 1

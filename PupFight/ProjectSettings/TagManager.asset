@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HighLight
   - Enemy
+  - AttackRange
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - Character
-  - 
+  - Range
+  - Grid
   - 
   - 
   - 

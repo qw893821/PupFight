@@ -5,6 +5,7 @@ using UnityEngine;
 public class GridSpec: MonoBehaviour {
     Ray camRay;
     RaycastHit hit;
+    int layerMask = 1<<9;
     //get player;
 
     //if the grid had an obejct setted, this grid will not highlighted
@@ -24,7 +25,6 @@ public class GridSpec: MonoBehaviour {
         
         camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         HighLightGrid();
-        
     }
 
     private void LateUpdate()
@@ -38,7 +38,7 @@ public class GridSpec: MonoBehaviour {
     void HighLightGrid()
     {
         transform.Find("Interactable").gameObject.GetComponent<Renderer>().enabled = false;
-        if (Physics.Raycast(camRay, out hit))
+        if (Physics.Raycast(camRay, out hit,Mathf.Infinity,layerMask))
             {
             if (hit.collider.tag == "HighLight")
             {
