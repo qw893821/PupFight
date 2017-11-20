@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Visibility : MonoBehaviour {
-
+    
     private void Start()
     {
     }
@@ -17,4 +17,6 @@ public class Visibility : MonoBehaviour {
     {
         transform.gameObject.SetActive(false);
     }
+
+
 }

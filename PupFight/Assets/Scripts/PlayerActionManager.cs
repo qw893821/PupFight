@@ -55,7 +55,7 @@ public class PlayerActionManager : MonoBehaviour
     {
         moveButton = playerActionUI.transform.Find("MoveButton").gameObject.GetComponent<Button>();
         attactButton = playerActionUI.transform.Find("AttackButton").gameObject.GetComponent<Button>();
-        statusButton = playerActionUI.transform.Find("StatusButton").gameObject.GetComponent<Button>();
+        statusButton = playerActionUI.transform.Find("RestButton").gameObject.GetComponent<Button>();
         playerActionUI.SetActive(false);
         playerPicked = false;
         timer = 0;//this timer use to avoid the unexpected ui pop when select player;
@@ -129,6 +129,19 @@ public class PlayerActionManager : MonoBehaviour
                 }
             }
         }
+
+        //this condition check make sure when player click the "rest" button , the ui will close;
+        //because in the condition check above, when the ui is not disable, if player click the move button/attack button , player status would be set to ohter enum.
+        /*if (Selected())
+        {
+            PlayerAction playerAction;
+            playerAction = selectedGO.GetComponent<PlayerAction>();
+            if (playerAction.aStatus == ActionStatus.isDone)
+            {
+                playerActionUI.SetActive(false);
+            }
+        }*/
+        //this function could be add to "Rest". when click "Rest" button, disable ui would be better. no need to get reference of "playerAction".
 
     }
 
@@ -259,5 +272,13 @@ public class PlayerActionManager : MonoBehaviour
         else return false;
     }
 
-
+    public void Rest()
+    {
+        PlayerAction playerAction;
+        playerAction = selectedGO.GetComponent<PlayerAction>();
+        playerAction.aStatus = ActionStatus.isDone;
+        playerActionUI.SetActive(false);
+        //wipe current selection of character
+        selectedGO = null;
+    }
 }
