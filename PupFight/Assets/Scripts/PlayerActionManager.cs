@@ -19,13 +19,16 @@ public class PlayerActionManager : MonoBehaviour
     public GameObject targetGrid;//change from static to normal
 
     public GameObject selectedGO;
+
+    //child "inrangecheck"
+    InRangeCheck inRC;
     //public above go for easy prototyoe
 
     PlayerAction playerAction;
     //several buttons
     Button moveButton;
     Button attactButton;
-    Button statusButton;
+    Button restButton;
 
     Button endTurn;
 
@@ -55,7 +58,7 @@ public class PlayerActionManager : MonoBehaviour
     {
         moveButton = playerActionUI.transform.Find("MoveButton").gameObject.GetComponent<Button>();
         attactButton = playerActionUI.transform.Find("AttackButton").gameObject.GetComponent<Button>();
-        statusButton = playerActionUI.transform.Find("RestButton").gameObject.GetComponent<Button>();
+        restButton = playerActionUI.transform.Find("RestButton").gameObject.GetComponent<Button>();
         playerActionUI.SetActive(false);
         playerPicked = false;
         timer = 0;//this timer use to avoid the unexpected ui pop when select player;
@@ -95,7 +98,8 @@ public class PlayerActionManager : MonoBehaviour
                 {
                     GridSpec gSpec;
                     gSpec = targetGrid.GetComponent<GridSpec>();
-                    if (gSpec.HighLighted() || gSpec.gStatus == "isEnemy")//if the grid is in moveable area
+                    inRC = selectedGO.GetComponentInChildren<InRangeCheck>();
+                    if (gSpec.HighLighted() || gSpec.gStatus == "isEnemy"|| gSpec.gStatus == "isFriend")//if the grid is in moveable area
                     {
                         if (gSpec.gStatus == "isNeutral")//player could move to neutral grid and check player status
                         {
@@ -105,7 +109,7 @@ public class PlayerActionManager : MonoBehaviour
                             playerActionUI.transform.position = Input.mousePosition;
                             Moved();
                         }
-                        else if (gSpec.gStatus == "isEnemy")//player could attack grid have enemy and check player or enemy status
+                        else if (gSpec.gStatus == "isEnemy"&&inRC.haveInRange)//player could attack grid have enemy and check player or enemy status
                         {
                             print("This is Enemy");
                             playerActionUI.SetActive(true);
@@ -114,11 +118,12 @@ public class PlayerActionManager : MonoBehaviour
                             playerActionUI.transform.position = Input.mousePosition;
                             enemyPup = targetGrid.transform.Find("Interactable").GetComponent<GridOccupy>().thisUnit;
                         }
-                        else if (gSpec.gStatus == "isFriend")//player can only check player status when the grid is occupied by friend unit
+                        else if(gSpec.gStatus == "isFriend" && !inRC.haveInRange)
                         {
                             playerActionUI.SetActive(true);
                             moveButton.interactable = false;
                             attactButton.interactable = false;
+                            restButton.interactable = true;
                             playerActionUI.transform.position = Input.mousePosition;
                         }
                     }

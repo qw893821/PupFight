@@ -31,7 +31,6 @@ public class InRangeCheck : MonoBehaviour {
             if (rend.enabled == true)
             {
                 haveInRange = true;
-                print("got one");
                 break;
             }
         }

@@ -68,4 +68,6 @@ public class FriendManager:MonoBehaviour{
             playerActions[i].aStatus = ActionStatus.isWaiting;
         }
     }
+
+
 }
