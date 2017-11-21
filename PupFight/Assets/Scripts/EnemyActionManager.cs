@@ -36,4 +36,12 @@ public class EnemyActionManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void EnemyTurn()//when enemy turn starts, all enemy "ActionStatus" set "isWaiting"
+    {
+        foreach(EnemyAction eA in enemyActions)
+        {
+            eA.SetWaiting();
+        }
+    }
 }

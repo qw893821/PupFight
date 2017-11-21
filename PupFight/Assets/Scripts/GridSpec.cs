@@ -59,8 +59,7 @@ public class GridSpec: MonoBehaviour {
             transform.Find("Interactable").GetComponent<Renderer>().enabled = false;
         }
         //disable the move area highlight, when character have moved
-        if (PlayerActionManager.instance.selectedGO != null&&PlayerActionManager.instance.selectedGO.GetComponent<PlayerAction>().aStatus == ActionStatus.moved
-            )
+        if (PlayerActionManager.instance.selectedGO != null&&PlayerActionManager.instance.selectedGO.GetComponent<PlayerAction>().aStatus == ActionStatus.moved)
         {
             transform.Find("Interactable").GetComponent<Renderer>().enabled = false;
         }
@@ -75,13 +74,10 @@ public class GridSpec: MonoBehaviour {
         {
             Vector3 offset;
             offset = transform.position - go.transform.position;
-
             if ((Mathf.Abs(offset.x) / 1 + Mathf.Abs(offset.z) / 1) <= i)
             {
                  transform.Find("Interactable").gameObject.GetComponent<Renderer>().enabled = true;
-            }
-            
-            
+            }        
         }
     }
 

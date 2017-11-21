@@ -249,6 +249,7 @@ public class PlayerActionManager : MonoBehaviour
     {
         //need let enemy do something here;
         //reset player character action status;
+        EnemyActionManager.eAmanager.EnemyTurn();//set all enemy action status to "isWaitng"
         FriendManager.friendManager.RestartTurn();
     }
 

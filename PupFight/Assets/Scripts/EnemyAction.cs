@@ -10,20 +10,35 @@ public class EnemyAction : MonoBehaviour {
      */
     public ActionStatus enemyStatus;
 
-    public GameObject target;
+    public GameObject target;//target player character
+    public GameObject enemyTargetGrid;//target grid,enemy will move
 
+    //stroe current pos data of the gird which enemy character is in.
+    public GameObject currentGrid;
+    //attack range
+    public RangeType rangeType;
+    int range;
     GameObject[] players;
     // Use this for initialization
     void Start () {
         enemyStatus = ActionStatus.isDone;
         players = GameObject.FindGameObjectsWithTag("Player");
+        switch (rangeType)
+        {
+            case RangeType.melee:
+                range = 1;
+                break;
+            case RangeType.shoot:
+                range = 2;
+                break;
+        }
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
     void TargetSearch()
     {
@@ -66,4 +81,11 @@ public class EnemyAction : MonoBehaviour {
     {
         
     }
+
+    public void SetWaiting()
+    {
+        enemyStatus = ActionStatus.isWaiting;
+    }
+
+    
 }

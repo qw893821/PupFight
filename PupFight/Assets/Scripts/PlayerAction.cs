@@ -11,7 +11,7 @@ public enum ActionStatus{
     isDone
 }
 
-public enum Range
+public enum RangeType
 {
     melee,
     shoot
@@ -35,7 +35,7 @@ public class PlayerAction : MonoBehaviour {
     public GameObject[] rangeHLs;
     public GameObject rangeHL;
 
-    public Range range;
+    public RangeType range;
 
     //camera ray, shot ray to get the grid where the mouse is.
     Ray camRay;
@@ -124,10 +124,10 @@ public class PlayerAction : MonoBehaviour {
     {
         switch (range)
         {
-            case Range.melee:
+            case RangeType.melee:
                 rangeHL=rangeHLs[0];
                 break;
-            case Range.shoot:
+            case RangeType.shoot:
                 rangeHL=rangeHLs[1];
                 break;
         }

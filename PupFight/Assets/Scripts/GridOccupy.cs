@@ -8,6 +8,8 @@ public class GridOccupy : MonoBehaviour {
 
     //this unit is the one whihc occpuy this grid;
     public GameObject thisUnit;
+
+    EnemyAction eA;
 	// Use this for initialization
 	void Awake () {
         grid = transform.parent.gameObject;
@@ -30,15 +32,24 @@ public class GridOccupy : MonoBehaviour {
                     break;
                 case "Enemy":
                     gridSpec.gStatus = "isEnemy";
+                    
                     break;
 
             }
             if (col.tag == "Player" || col.tag == "Enemy")
             {
                 gridSpec.occupied = true;
+                thisUnit = col.transform.gameObject;
+                if (col.tag == "Enemy")
+                {
+                    eA = thisUnit.GetComponent<EnemyAction>();
+                    eA.currentGrid = transform.parent.gameObject;
+                }
             }
-            thisUnit = col.transform.gameObject;
+            //thisUnit = col.transform.gameObject;
+            else { thisUnit = null; }
         }
+        
     }
 
 
@@ -50,10 +61,12 @@ public class GridOccupy : MonoBehaviour {
             {
                 gridSpec.occupied = false;
                 gridSpec.gStatus = "isNeutral";
+                thisUnit = null;
             }
         }
         
     }
 
+    
     
 }
