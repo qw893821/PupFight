@@ -17,22 +17,42 @@ public class EnemyAction : MonoBehaviour {
     public GameObject currentGrid;
     //attack range
     public RangeType rangeType;
-    int range;
+
+
+    public int moveRange;//enemey move range;
+    public GameObject [] moveRangeGO;
+    Vector3 targetPos;//the target position of enemy, used for pos test
+
+    int range;//attack range
+    public GameObject[] enemyRangeHLs;
+    public GameObject enemyRangeHL;
     GameObject[] players;
+
+    Ray enemyRay;
+    RaycastHit hit;
     // Use this for initialization
     void Start () {
+        print(WalkRangeManager.walkRangeInstance.moveArea1);
         enemyStatus = ActionStatus.isDone;
         players = GameObject.FindGameObjectsWithTag("Player");
         switch (rangeType)
         {
             case RangeType.melee:
                 range = 1;
+                enemyRangeHL = enemyRangeHLs[0];
                 break;
             case RangeType.shoot:
                 range = 2;
+                enemyRangeHL = enemyRangeHLs[1];
                 break;
         }
-	}
+        MoveRangePick();
+        foreach(GameObject go in moveRangeGO)
+        {
+            Instantiate(go,transform);
+        }
+
+    }
 	
 
 	// Update is called once per frame
@@ -87,5 +107,30 @@ public class EnemyAction : MonoBehaviour {
         enemyStatus = ActionStatus.isWaiting;
     }
 
-    
+    void MoveRangePick()
+    {
+        switch (moveRange)
+        {
+            case 2:
+                moveRangeGO = WalkRangeManager.walkRangeInstance.moveArea1;
+                break;
+            case 3:
+                moveRangeGO = WalkRangeManager.walkRangeInstance.moveArea2;
+                break;
+        }
+
+    }
+
+    void PositionTest()
+    {
+        int layerMask = 1 << 10;
+        enemyRay=new Ray(transform.position, target.transform.position);
+        if(Physics.Raycast(enemyRay,out hit, 10f, layerMask))
+        {
+            
+        }
+    }
+
+
+   
 }
