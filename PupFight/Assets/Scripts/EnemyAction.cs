@@ -10,6 +10,10 @@ public class EnemyAction : MonoBehaviour {
      */
     public ActionStatus enemyStatus;
 
+    Vector3 currentPos;
+
+    public Vector3[] testPoss;//date of all the possible position enemy could go
+
     public GameObject target;//target player character
     public GameObject enemyTargetGrid;//target grid,enemy will move
 
@@ -57,7 +61,8 @@ public class EnemyAction : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+        GetCurrentPos();
+        TargetSearch();
     }
 
     void TargetSearch()
@@ -121,16 +126,30 @@ public class EnemyAction : MonoBehaviour {
 
     }
 
-    void PositionTest()
+    //maybe, the problem is the ray could not hit the collider in this go. so, find a solution to solve issue.
+    //one track, change to instanicate of "moverangego", do not set it be the child of this gameobject.
+    //2, maybe use the "enemyactionmanager" to cast the ray. There is one manager, this could do something.
+    /*public void FindTestPos()
     {
+        GameObject go;
         int layerMask = 1 << 10;
-        enemyRay=new Ray(transform.position, target.transform.position);
-        if(Physics.Raycast(enemyRay,out hit, 10f, layerMask))
+        enemyRay=new Ray(transform.position + new Vector3(0, 0.5f, 0), target.transform.position-transform.position);
+        print(enemyRay);
+        if(Physics.Raycast(enemyRay,out hit,Mathf.Infinity, layerMask))
         {
-            
+            print("anything");
+        }
+        else { go = null; }
+        
+
+    }*/
+
+
+   void GetCurrentPos()
+    {
+        if (enemyStatus == ActionStatus.isDone&&currentPos!=transform.position)//when enemy finished its action, store current position. Excute when "currentPos" is different from enemy's current position
+        {
+            currentPos = transform.position;
         }
     }
-
-
-   
 }
