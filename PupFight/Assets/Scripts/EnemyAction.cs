@@ -13,7 +13,7 @@ public class EnemyAction : MonoBehaviour {
     Vector3 currentPos;
 
     public GameObject testGO;//all possible "MoveRangeGO" in this area. 
-    public Vector3[] testPoss;//date of all the possible position enemy could go
+    public List<Vector3> testPoss;//date of all the possible position enemy could go
     
 
     public GameObject target;//target player character
@@ -31,9 +31,13 @@ public class EnemyAction : MonoBehaviour {
     int a = 4;//this is not a good idea to set a value here, but have not idea how to deal with it.
 
     int range;//attack range
+    public Visibility aRangeVB;
+
     public GameObject[] enemyRangeHLs;
     public GameObject enemyRangeHL;
     GameObject[] players;
+
+    float speed;
 
     Ray enemyRay;
     RaycastHit hit;
@@ -41,11 +45,13 @@ public class EnemyAction : MonoBehaviour {
     private void Awake()
     {
         moveRangeGO = new GameObject[4];
+        
     }
     // Use this for initialization
     void Start () {
         enemyStatus = ActionStatus.isDone;
         players = GameObject.FindGameObjectsWithTag("Player");
+        speed = 2f;
         switch (rangeType)//this is attack range
         {
             case RangeType.melee:
@@ -57,6 +63,8 @@ public class EnemyAction : MonoBehaviour {
                 enemyRangeHL = enemyRangeHLs[1];
                 break;
         }
+        Instantiate(enemyRangeHL, transform);
+        aRangeVB = GetComponentInChildren<Visibility>();
         MoveRangePick();
         
     }
@@ -78,12 +86,12 @@ public class EnemyAction : MonoBehaviour {
         nearDist = Vector3.Distance(transform.position, players[0].transform.position);
         for (int i = 1; i < players.Length; i++)
         {
-                    tempDist = Vector3.Distance(transform.position, players[i].transform.position);
-                    if (nearDist > tempDist)
-                    {
-                        tempGO = players[i];
+            tempDist = Vector3.Distance(transform.position, players[i].transform.position);
+            if (nearDist > tempDist)
+            {
+                tempGO = players[i];
                 nearDist = tempDist;
-                    }
+            }
         }
         target = tempGO;
     }
@@ -94,11 +102,10 @@ public class EnemyAction : MonoBehaviour {
         return true;
     }*/
 
-    bool TargetInRange(int i, GameObject go)
+    bool TargetInRange(int i, Vector3 pos)
     {
             Vector3 offset;
-            offset = transform.position - go.transform.position;
-
+            offset = target.transform.position - pos;
             if ((Mathf.Abs(offset.x) / 1 + Mathf.Abs(offset.z) / 1) <= i)
             {
                 return true;
@@ -106,9 +113,30 @@ public class EnemyAction : MonoBehaviour {
             else return false;      
     }
 
+    void PosTest()
+    {
+        for(int i = 0; i < testPoss.Count; i++)
+        {
+            
+            if (!TargetInRange(2, testPoss[i]))
+            {
+                testPoss.Remove(testPoss[i]);
+                print(testPoss[i]);
+                if (i > 0)
+                {
+                    i -= 1;
+                }
+            }
+        }
+        for(int i = 0; i < testPoss.Count; i++)
+        {
+            print(testPoss[i]);
+        }
+    }
+
     public void Movement()
     {
-        
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
 
     public void SetWaiting()
@@ -154,17 +182,17 @@ public class EnemyAction : MonoBehaviour {
         }
         else { go = null; }
 
-        int tempCount=0;
-        testPoss = new Vector3[testGO.transform.childCount - 1];
+        //int tempCount=0;
+        testPoss = new List<Vector3>();
         foreach(Transform child in testGO.transform)
         {
             if (child.gameObject.tag == "MoveArea")
             {
-                testPoss[tempCount] = child.transform.position;
-                tempCount++;
+                testPoss.Add(child.transform.position);
             }
         }
-        tempCount = 0;
+        //tempCount = 0;
+        PosTest();
     }
 
 
@@ -176,6 +204,8 @@ public class EnemyAction : MonoBehaviour {
         }
     }
 
+
+    //add some function here, let the range active when the move grid is active.
    void MoveGridStatusChange()
     {
         if (EnemyActionManager.eAmanager.EnemyFinished())
@@ -183,13 +213,18 @@ public class EnemyAction : MonoBehaviour {
             foreach(GameObject go in moveRangeGO)
             {
                 go.SetActive(false);
+                aRangeVB.Invisible();
             }
         }
         else {
             foreach (GameObject go in moveRangeGO)
             {
                 go.SetActive(true);
+                aRangeVB.Visible();
             }
         }
+
     } 
+
+   
 }

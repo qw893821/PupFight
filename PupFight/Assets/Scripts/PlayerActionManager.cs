@@ -24,7 +24,7 @@ public class PlayerActionManager : MonoBehaviour
     InRangeCheck inRC;
     //public above go for easy prototyoe
 
-    PlayerAction playerAction;
+    public PlayerAction playerAction;
     //several buttons
     Button moveButton;
     Button attactButton;

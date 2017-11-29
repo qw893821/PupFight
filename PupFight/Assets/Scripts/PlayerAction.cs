@@ -37,6 +37,8 @@ public class PlayerAction : MonoBehaviour {
 
     public RangeType range;
 
+    public int moveRange;
+
     //camera ray, shot ray to get the grid where the mouse is.
     Ray camRay;
     RaycastHit hit;
@@ -56,6 +58,7 @@ public class PlayerAction : MonoBehaviour {
         Instantiate(rangeHL, transform);
         FindRange();
         InActiveRange();
+        moveRange = 2;
     }
 
     private void Update()
