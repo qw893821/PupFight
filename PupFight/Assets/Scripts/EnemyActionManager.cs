@@ -53,7 +53,7 @@ public class EnemyActionManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
 
     public void EnemyTurn()//when enemy turn starts, all enemy "ActionStatus" set "isWaiting"
@@ -62,5 +62,19 @@ public class EnemyActionManager : MonoBehaviour {
         {
             eA.SetWaiting();
         }
+    }
+
+
+    public bool EnemyFinished()
+    {
+        for(int i = 0; i < enemyActions.Length; i++)
+        {
+            if (enemyActions[i].enemyStatus != ActionStatus.isDone)
+            {
+                return false;
+            }
+        }
+        return true;
+
     }
 }

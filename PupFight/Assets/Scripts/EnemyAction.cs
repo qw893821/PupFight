@@ -66,7 +66,7 @@ public class EnemyAction : MonoBehaviour {
 	void Update () {
         GetCurrentPos();
         TargetSearch();
-        MoveRangeStatusChange();
+        MoveGridStatusChange();
     }
 
     void TargetSearch()
@@ -176,24 +176,20 @@ public class EnemyAction : MonoBehaviour {
         }
     }
 
-    void MoveRangeStatusChange()
+   void MoveGridStatusChange()
     {
-        if (enemyStatus == ActionStatus.isDone)
+        if (EnemyActionManager.eAmanager.EnemyFinished())
         {
-            foreach (GameObject go in moveRangeGO)
+            foreach(GameObject go in moveRangeGO)
             {
                 go.SetActive(false);
             }
         }
-
-        else
-        {
+        else {
             foreach (GameObject go in moveRangeGO)
             {
                 go.SetActive(true);
             }
-
         }
-        
-    }
+    } 
 }

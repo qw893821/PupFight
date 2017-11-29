@@ -1011,6 +1011,11 @@ Prefab:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114009684066637840, guid: 189419697811f6f4a92ff7e3bc148729,
+        type: 2}
+      propertyPath: moveRange
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 189419697811f6f4a92ff7e3bc148729, type: 2}
   m_IsPrefabParent: 0
