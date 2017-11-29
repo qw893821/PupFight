@@ -9,6 +9,9 @@ public class EnemyActionManager : MonoBehaviour {
         get { return _eAManager; }
     }
 
+    public GameObject[] moveArea1;//move ability is "1"
+    public GameObject[] moveArea2;//move ability is "2"
+
     public GameObject[] enemies;
     public EnemyAction[] enemyActions;
 
@@ -21,6 +24,22 @@ public class EnemyActionManager : MonoBehaviour {
         _eAManager = this;
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         enemyActions = new EnemyAction[enemies.Length];
+        int i = 0;//dynamic name of the range2area clone
+        foreach(GameObject go in moveArea1)
+        {
+            GameObject clone;
+            clone=Instantiate(go, transform);
+            clone.name = "Range2Area" + i;
+            i++;
+        }
+        int x = 0;//dynamic name of the rang3area clone
+        foreach (GameObject go in moveArea2)
+        {
+            GameObject clone;
+            clone = Instantiate(go, transform);
+            clone.name = "Range3Area" + x;
+            x++;
+        }
     }
 
     // Use this for initialization

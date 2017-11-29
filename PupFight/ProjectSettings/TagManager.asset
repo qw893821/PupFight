@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - AttackRange
   - MoveArea
+  - MoveArea1
+  - MoveArea2
   layers:
   - Default
   - TransparentFX

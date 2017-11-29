@@ -12,7 +12,9 @@ public class EnemyAction : MonoBehaviour {
 
     Vector3 currentPos;
 
+    public GameObject testGO;//all possible "MoveRangeGO" in this area. 
     public Vector3[] testPoss;//date of all the possible position enemy could go
+    
 
     public GameObject target;//target player character
     public GameObject enemyTargetGrid;//target grid,enemy will move
@@ -26,6 +28,7 @@ public class EnemyAction : MonoBehaviour {
     public int moveRange;//enemey move range;
     public GameObject [] moveRangeGO;
     Vector3 targetPos;//the target position of enemy, used for pos test
+    int a = 4;//this is not a good idea to set a value here, but have not idea how to deal with it.
 
     int range;//attack range
     public GameObject[] enemyRangeHLs;
@@ -34,12 +37,16 @@ public class EnemyAction : MonoBehaviour {
 
     Ray enemyRay;
     RaycastHit hit;
+
+    private void Awake()
+    {
+        moveRangeGO = new GameObject[4];
+    }
     // Use this for initialization
     void Start () {
-        print(WalkRangeManager.walkRangeInstance.moveArea1);
         enemyStatus = ActionStatus.isDone;
         players = GameObject.FindGameObjectsWithTag("Player");
-        switch (rangeType)
+        switch (rangeType)//this is attack range
         {
             case RangeType.melee:
                 range = 1;
@@ -51,11 +58,7 @@ public class EnemyAction : MonoBehaviour {
                 break;
         }
         MoveRangePick();
-        foreach(GameObject go in moveRangeGO)
-        {
-            Instantiate(go,transform);
-        }
-
+        
     }
 	
 
@@ -63,6 +66,7 @@ public class EnemyAction : MonoBehaviour {
 	void Update () {
         GetCurrentPos();
         TargetSearch();
+        MoveRangeStatusChange();
     }
 
     void TargetSearch()
@@ -114,35 +118,54 @@ public class EnemyAction : MonoBehaviour {
 
     void MoveRangePick()
     {
-        switch (moveRange)
-        {
+        switch (moveRange) {
             case 2:
-                moveRangeGO = WalkRangeManager.walkRangeInstance.moveArea1;
+                for (int i = 0; i < a; i++)
+                {
+                    moveRangeGO[i] = GameObject.Find("Range2Area" + i);
+                }
                 break;
             case 3:
-                moveRangeGO = WalkRangeManager.walkRangeInstance.moveArea2;
+                for (int i = 0; i < a; i++)
+                {
+                    moveRangeGO[i] = GameObject.Find("Range3Area" + i);
+
+                }
                 break;
         }
-
     }
 
     //maybe, the problem is the ray could not hit the collider in this go. so, find a solution to solve issue.
     //one track, change to instanicate of "moverangego", do not set it be the child of this gameobject.
     //2, maybe use the "enemyactionmanager" to cast the ray. There is one manager, this could do something.
-    /*public void FindTestPos()
+    public void FindTestPos()
     {
+        foreach(GameObject mRGO in moveRangeGO)
+        {
+            mRGO.transform.position = transform.position;
+        }
         GameObject go;
         int layerMask = 1 << 10;
         enemyRay=new Ray(transform.position + new Vector3(0, 0.5f, 0), target.transform.position-transform.position);
-        print(enemyRay);
-        if(Physics.Raycast(enemyRay,out hit,Mathf.Infinity, layerMask))
+        if(Physics.Raycast(enemyRay,out hit,10f,layerMask))
         {
-            print("anything");
+            //get all position infor of grid which this ray hit, create a pos array for pos test.
+            testGO = hit.collider.transform.parent.gameObject;
         }
         else { go = null; }
-        
 
-    }*/
+        int tempCount=0;
+        testPoss = new Vector3[testGO.transform.childCount - 1];
+        foreach(Transform child in testGO.transform)
+        {
+            if (child.gameObject.tag == "MoveArea")
+            {
+                testPoss[tempCount] = child.transform.position;
+                tempCount++;
+            }
+        }
+        tempCount = 0;
+    }
 
 
    void GetCurrentPos()
@@ -151,5 +174,26 @@ public class EnemyAction : MonoBehaviour {
         {
             currentPos = transform.position;
         }
+    }
+
+    void MoveRangeStatusChange()
+    {
+        if (enemyStatus == ActionStatus.isDone)
+        {
+            foreach (GameObject go in moveRangeGO)
+            {
+                go.SetActive(false);
+            }
+        }
+
+        else
+        {
+            foreach (GameObject go in moveRangeGO)
+            {
+                go.SetActive(true);
+            }
+
+        }
+        
     }
 }

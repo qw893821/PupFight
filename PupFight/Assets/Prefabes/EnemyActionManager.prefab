@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1251737990129462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9882202, y: 0.24267578, z: -0.11230469}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,3 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01cf13aff62d7a4d945effde43e282b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveArea1:
+  - {fileID: 1147378964133248, guid: 2fa354d4a3f604d478205683380cc879, type: 2}
+  - {fileID: 1371702773358914, guid: a5e25f47b15b9dc409700c75e729573e, type: 2}
+  - {fileID: 1384318931188362, guid: 1c8c8e5cf6e5128438badeea285ede50, type: 2}
+  - {fileID: 1668694457287742, guid: 224f97c958e6a9642a9564a6f513e034, type: 2}
+  moveArea2:
+  - {fileID: 1376101376984388, guid: 7ce23e909f654024a843591dfb5ddfcd, type: 2}
+  - {fileID: 1390034745183422, guid: 1b7acdd6c44b7de4fb0147019bae2d0f, type: 2}
+  - {fileID: 1390582680368824, guid: 825e6eef424cb3e419f8c97f817a9286, type: 2}
+  - {fileID: 1968978212934220, guid: b4a969e641cf53b46ab67868361a9b1d, type: 2}
+  enemies: []
+  enemyActions: []
