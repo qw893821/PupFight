@@ -1006,6 +1006,18 @@ Prefab:
       propertyPath: m_Name
       value: BasicGrid (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1914346369853048, guid: c9dd3b2241c65d448b288c246d995599, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626428311627406, guid: c9dd3b2241c65d448b288c246d995599, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243403065719608, guid: c9dd3b2241c65d448b288c246d995599, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9dd3b2241c65d448b288c246d995599, type: 2}
   m_IsPrefabParent: 0
@@ -1166,7 +1178,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4448288411833648, guid: ef3d37a961c802f499a3c5d3725d1fbe, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4448288411833648, guid: ef3d37a961c802f499a3c5d3725d1fbe, type: 2}
       propertyPath: m_LocalPosition.y

@@ -32,6 +32,7 @@ public class EnemyAction : MonoBehaviour {
 
     int range;//attack range
     public Visibility aRangeVB;
+    public InRangeCheck inCheck;
 
     public GameObject[] enemyRangeHLs;
     public GameObject enemyRangeHL;
@@ -65,6 +66,7 @@ public class EnemyAction : MonoBehaviour {
         }
         Instantiate(enemyRangeHL, transform);
         aRangeVB = GetComponentInChildren<Visibility>();
+        inCheck = GetComponentInChildren<InRangeCheck>();
         MoveRangePick();
         
     }
@@ -115,23 +117,30 @@ public class EnemyAction : MonoBehaviour {
 
     void PosTest()
     {
+        foreach(Vector3 v3 in testPoss)
+        {
+            //"TargetInRange()" is used to check walking range. not attack range
+
+            transform.position = v3;
+            if (!inCheck.haveInRange)
+            {
+                testPoss.Remove(v3);
+
+            }
+            
+        }
+
+        //try another solution
+        
         for(int i = 0; i < testPoss.Count; i++)
         {
             
-            if (!TargetInRange(2, testPoss[i]))
-            {
-                testPoss.Remove(testPoss[i]);
-                print(testPoss[i]);
-                if (i > 0)
-                {
-                    i -= 1;
-                }
-            }
         }
-        for(int i = 0; i < testPoss.Count; i++)
+        for (int i = 0; i < testPoss.Count; i++)
         {
             print(testPoss[i]);
         }
+        transform.position = currentPos;
     }
 
     public void Movement()
@@ -192,6 +201,10 @@ public class EnemyAction : MonoBehaviour {
             }
         }
         //tempCount = 0;
+        //add currentPos in the testPos;
+        
+        testPoss.Add(currentPos);
+        
         PosTest();
     }
 

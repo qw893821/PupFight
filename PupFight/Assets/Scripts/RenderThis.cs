@@ -19,40 +19,29 @@ public class RenderThis : MonoBehaviour {
     //enable highlight when enemy is in attack range
     private void OnTriggerEnter(Collider col)
     {
-        if (transform.parent.parent.tag == "Player")
+        if (transform.parent.parent.tag == "Player"|| transform.parent.parent.tag == "Enemy")
         {
-            if (col.tag == "Enemy")
+            if (col.tag == "Enemy"|| col.tag == "Player")
             {
+                print(col.tag);
                 renderer.enabled = true;
 
             }
         }
-        if (transform.parent.parent.tag == "Enemy")
-        {
-            if (col.tag == "Player")
-            {
-                renderer.enabled = true;
-            }
-        }
+        
     }
 
     //disable hightlight
     private void OnTriggerExit(Collider col)
     {
-        if (transform.parent.parent.tag == "Player")
+        if (transform.parent.parent.tag == "Player"|| transform.parent.parent.tag == "Enemy")
         {
-            if (col.tag == "Enemy")
+            if (col.tag == "Enemy"|| col.tag == "Player")
             {
                 renderer.enabled = false;
             }
         }
-        if (transform.parent.parent.tag == "Enemy")
-        {
-            if (col.tag == "Player")
-            {
-                renderer.enabled = false;
-            }
-        }
+       
     }
 
     void DisableHighlight()//this function disable highlight when parent is not active
@@ -63,9 +52,13 @@ public class RenderThis : MonoBehaviour {
             print("disable");
             renderer.enabled = false;
         }*/
-        if (renderer.enabled==true&&PlayerActionManager.instance.selectedGO == null)//
+        if (renderer.enabled==true)//
         {
-            renderer.enabled = false;
+            if (transform.parent.parent.tag == "Player"&&PlayerActionManager.instance.selectedGO==null)
+            {
+                renderer.enabled = false;
+            }
+            
         }
     }
 }

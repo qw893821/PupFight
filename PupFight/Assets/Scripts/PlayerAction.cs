@@ -42,9 +42,10 @@ public class PlayerAction : MonoBehaviour {
     //camera ray, shot ray to get the grid where the mouse is.
     Ray camRay;
     RaycastHit hit;
-
+    
     //child component, must get before it is set inactive.
     Visibility rangeVB;
+
     // Use this for initialization
     
     void Start()
