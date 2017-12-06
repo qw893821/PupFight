@@ -24,7 +24,7 @@ public class InRangeCheck : MonoBehaviour {
         
     }
 
-    void InCheck()
+    public void InCheck()
     {
         foreach(Renderer rend in renderers)
         {
@@ -33,6 +33,7 @@ public class InRangeCheck : MonoBehaviour {
                 haveInRange = true;
                 break;
             }
+            else { haveInRange = false; }
         }
         
     }

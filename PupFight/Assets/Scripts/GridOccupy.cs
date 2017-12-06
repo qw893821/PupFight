@@ -68,5 +68,8 @@ public class GridOccupy : MonoBehaviour {
     }
 
     
-    
+    public GameObject ReturnGO()//give this gameobject to the "player"/"enemy"
+    {
+        return this.transform.gameObject;
+    }
 }

@@ -11,10 +11,11 @@ public class EnemyAction : MonoBehaviour {
     public ActionStatus enemyStatus;
 
     Vector3 currentPos;
-
+    
     public GameObject testGO;//all possible "MoveRangeGO" in this area. 
     public List<Vector3> testPoss;//date of all the possible position enemy could go
-    
+
+    public List<GameObject> posGO;
 
     public GameObject target;//target player character
     public GameObject enemyTargetGrid;//target grid,enemy will move
@@ -117,24 +118,38 @@ public class EnemyAction : MonoBehaviour {
 
     void PosTest()
     {
-        foreach(Vector3 v3 in testPoss)
+        
+        /*foreach(Vector3 v3 in testPoss)
         {
             //"TargetInRange()" is used to check walking range. not attack range
-
+            
             transform.position = v3;
+            inCheck.InCheck();
             if (!inCheck.haveInRange)
             {
-                testPoss.Remove(v3);
+               // testPoss.Remove(v3);
 
             }
             
-        }
+        }*/
+        /*Vector3 v3 = testPoss[0];
+        transform.position = v3;
+        inCheck.InCheck();
+        if (!inCheck.haveInRange)
+        {
+            testPoss.Remove(testPoss[0]);
+        }*/
 
         //try another solution
         
         for(int i = 0; i < testPoss.Count; i++)
         {
-            
+            transform.position = testPoss[i];
+            inCheck.InCheck();
+            if (inCheck.haveInRange)
+            {
+                
+            }
         }
         for (int i = 0; i < testPoss.Count; i++)
         {
@@ -202,9 +217,8 @@ public class EnemyAction : MonoBehaviour {
         }
         //tempCount = 0;
         //add currentPos in the testPos;
-        
+        print(currentPos);
         testPoss.Add(currentPos);
-        
         PosTest();
     }
 
@@ -236,8 +250,5 @@ public class EnemyAction : MonoBehaviour {
                 aRangeVB.Visible();
             }
         }
-
     } 
-
-   
 }

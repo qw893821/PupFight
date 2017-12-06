@@ -19,13 +19,20 @@ public class RenderThis : MonoBehaviour {
     //enable highlight when enemy is in attack range
     private void OnTriggerEnter(Collider col)
     {
-        if (transform.parent.parent.tag == "Player"|| transform.parent.parent.tag == "Enemy")
+        if (transform.parent.parent.tag == "Player")
         {
-            if (col.tag == "Enemy"|| col.tag == "Player")
+            if (col.tag == "Enemy")
             {
                 print(col.tag);
                 renderer.enabled = true;
 
+            }
+        }
+        if(transform.parent.parent.tag == "Enemy")
+        {
+            if(col.tag == "Player")
+            {
+                renderer.enabled = true;
             }
         }
         
@@ -34,9 +41,16 @@ public class RenderThis : MonoBehaviour {
     //disable hightlight
     private void OnTriggerExit(Collider col)
     {
-        if (transform.parent.parent.tag == "Player"|| transform.parent.parent.tag == "Enemy")
+        if (transform.parent.parent.tag == "Player")
         {
-            if (col.tag == "Enemy"|| col.tag == "Player")
+            if (col.tag == "Enemy")
+            {
+                renderer.enabled = false;
+            }
+        }
+        if(transform.parent.parent.tag == "Enemy")
+        {
+            if(col.tag == "Player")
             {
                 renderer.enabled = false;
             }
